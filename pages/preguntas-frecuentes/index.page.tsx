@@ -1,4 +1,4 @@
-import FaqAccordion from "dh-marvel/components/faqs/faqAccordion"
+import FaqAccordion from "../../components/faqs/faqAccordion"
 
 function preguntasFrecuentes() {
 
