@@ -94,4 +94,4 @@ para que puedas ir cumpliendo etapas y ganar confianza (y `ownership`) en este p
   - Finalmente, si bien no es obligatorio, este es un componente simple para testear, para mantener alto nuestro coverage y dar por cerrada esta función.
   - Subimos nuestro contenido y verificamos que funcione correctamente en Vercel, antes de pasar a la próxima etapa.
   - Listo, ya tenemos 1 de 6! no te olvides de pushear estos cambios, y si estas usando una estrategia de branching, de mergear este branch con main antes de continuar. 
-2. Luego continuar con [Página 1: Inicio (Home)](#pgina-1-pgina-de-inicio-home)
+2. Luego continuar con [Página 1: Inicio (Home)](/docs/funcionalidades.md#pgina-1-pgina-de-inicio-home)
