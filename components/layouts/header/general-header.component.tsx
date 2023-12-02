@@ -21,12 +21,12 @@ const Header: FC<Props> = ({variant}: Props) => {
                     fontWeight: 700,
                     color: 'inherit',
                     textDecoration: 'none',
-                }}> DH-Marvel</MUILink>
+                }}> Marvel</MUILink>
             </NextLink>
             {variant == 'general' &&
                 <Box>
                     <NextLink href="/preguntas-frecuentes" passHref>
-                        <MUILink variant="body2" sx={{color: 'white', fontSize: 18, fontWeight: 600}}>FAQ</MUILink>
+                        <MUILink variant="body2" sx={{color: 'aliceblue', fontSize: 18, fontWeight: 700}}>FAQ</MUILink>
                     </NextLink>
                 </Box>
             }
@@ -37,7 +37,11 @@ const Header: FC<Props> = ({variant}: Props) => {
 
 const GeneralHeader: FC<Props> = ({variant}: Props) => {
     return variant == 'general' ?
-        <AppBar position="static">
+        <AppBar sx={{
+            background:"#000",
+            boxShadow:"0px 5px 10px #ff9f59",
+            zIndex:"999"
+            }} position="static">
             <Header variant={variant}/>
         </AppBar> : <Header variant={variant}/>
         ;

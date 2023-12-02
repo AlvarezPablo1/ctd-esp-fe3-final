@@ -11,7 +11,7 @@ const LayoutGeneral: FC<PropsWithChildren> = ({children}: PropsWithChildren) => 
     return (<>
             <Stack direction={"column"} height={'100%'}>
                 <GeneralHeader />
-                <Box display={'flex'} flexGrow={1} justifyContent={'center'}>
+                <Box display={'flex'} flexGrow={1} justifyContent={'center'} sx={{background: "#000000"}}>
                     {children}
                 </Box>
                 <GeneralFooter />

@@ -1,10 +1,11 @@
-import FaqAccordion from "../../components/faqs/faqAccordion"
+import Faqs from "dh-marvel/components/faqs/Faqs"
+
 
 function preguntasFrecuentes() {
 
   return (
     <>
-      <FaqAccordion/>
+      <Faqs/>
     </>
   )
 }
