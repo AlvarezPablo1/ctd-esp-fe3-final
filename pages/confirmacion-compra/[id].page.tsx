@@ -59,6 +59,8 @@ const confirmarCompra: React.FC<Comic> = ({id, title, thumbnail, price }) => {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "space-between",
+      height: "50vh",
+      marginTop: "2rem"
     }}>
       <Typography variant="caption" sx={{
                           color: "#ff9f59",

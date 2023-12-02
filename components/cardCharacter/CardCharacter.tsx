@@ -61,7 +61,7 @@ const CardCharacter: React.FC<Character> = ({id,name,description,thumbnail,}) =>
     <Grid container spacing={{ xs: 6, sm: 1 }} className={characterStyle.characterContainer}>
         <Button onClick={handleClick} sx={{
                 backgroundColor: '#ff9f59',
-                marginBottom: '2rem',
+                margin: '3rem 0',
                 width: '150px',
                 color: 'black',
                 "&:hover": {
