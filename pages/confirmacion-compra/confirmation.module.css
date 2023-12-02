@@ -1,0 +1,51 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 50vh;
+}
+
+.congratulationsMsj{
+  color: #ff9f59;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.image{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 500px;
+  justify-content: space-evenly;
+} 
+
+.info{
+  width: 45%;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.button {
+  color: black;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #ff9f59;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.button:hover{
+  background-color: #82502c;
+  color: aliceblue;
+  transition: .2s ease;
+}

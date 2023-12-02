@@ -35,12 +35,12 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     const totalPages = Math.ceil(totalComics / itemsPerPage);
   
     return {
-      props: {comics,totalPages,currentPage,},
+      props: {comics,totalPages,currentPage},
     };
   };
 
 const Index: NextPage<ComicsProps> = ({ comics, totalPages, currentPage }) => {
-
+  
   const route = useRouter();
 
   const handleChange = async (event: React.ChangeEvent<unknown>,page: number) => {

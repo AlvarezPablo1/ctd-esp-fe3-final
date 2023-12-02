@@ -3,16 +3,14 @@ import { Box, Typography, Button } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import CardsStyle from "./card.module.css"
-// Representa un cómic de Marvel
 interface ComicCard {
-  id: number; // El ID único del recurso del cómic
-  title: string; // El título canónico del cómic
-  thumbnail: Image; // La imagen representativa del cómic
+  id: number; 
+  title: string; 
+  thumbnail: Image; 
 }
-// Representa una imagen asociada con el cómic
 interface Image {
-  path: string; // La ruta de la imagen
-  extension: string; // La extensión del archivo de la imagen
+  path: string; 
+  extension: string; 
 }
 
 const Cards: React.FC<ComicCard> = ({ id, title, thumbnail }) => {
