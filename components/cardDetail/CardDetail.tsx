@@ -69,7 +69,15 @@ const CardDetail: React.FC<Comic> = ({id,title,description,thumbnail,characters,
             </Button>
           ) : (
             <Link href={`/checkout/${id}`}>
-              <Button className={CardDetailStyles.btnBuy}>
+              <Button sx={{
+                backgroundColor: '#ff9f59',
+                width: '150px',
+                color: 'black',
+                "&:hover": {
+                  backgroundColor: '#82502c',
+                  color: 'aliceblue',
+                },
+              }}>
                 Comprar
               </Button>
             </Link>
@@ -93,7 +101,11 @@ const CardDetail: React.FC<Comic> = ({id,title,description,thumbnail,characters,
                   return (
                     <Grid item key={character.name} xs={6} sm={3}>
                       <Link href={`/personajes/${characterId}`}>
-                        <Typography className={CardDetailStyles.character}>
+                        <Typography sx={{
+                          color: "#ff9f59",
+                          fontSize: "30px",
+                          textTransform: "uppercase",
+                        }}>
                           {character.name}{" "}
                         </Typography>
                       </Link>

@@ -59,14 +59,29 @@ const CardCharacter: React.FC<Character> = ({id,name,description,thumbnail,}) =>
 
   return (
     <Grid container spacing={{ xs: 6, sm: 1 }} className={characterStyle.characterContainer}>
-        <Button className={characterStyle.btnBack} onClick={handleClick}>
+        <Button onClick={handleClick} sx={{
+                backgroundColor: '#ff9f59',
+                marginBottom: '2rem',
+                width: '150px',
+                color: 'black',
+                "&:hover": {
+                  backgroundColor: '#82502c',
+                  color: 'aliceblue',
+                },
+              }}>
           Volver al comic
         </Button>
       <Grid item xs={12} sx={{ position: "relative", height: "600px" }}>
         <Image src={thumbnail.path + ".jpg"} sizes="100%" layout="fill" alt={name}/>
       </Grid>
       <Grid item xs={12}>
-        <Typography variant="caption" className={characterStyle.characterName}>
+        <Typography variant="caption" sx={{
+                          color: "#ff9f59",
+                          fontSize: "30px",
+                          textTransform: "uppercase",
+                          fontWeight: "700",
+                          textAlign: "center",
+                        }}>
           {name}
         </Typography>
       </Grid>

@@ -29,22 +29,3 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
-
-.button {
-  color: black;
-  border-radius: 16px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #ff9f59;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.button:hover{
-  background-color: #82502c;
-  color: aliceblue;
-  transition: .2s ease;
-}

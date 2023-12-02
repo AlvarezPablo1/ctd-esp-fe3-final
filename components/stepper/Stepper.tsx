@@ -557,28 +557,40 @@ const StepperComp: React.FC<id> = ({id}) => {
               alignItems: "flex-end",
             }}
           >
-            <Button
-              disabled={activeStep === 0}
-              onClick={handleBack}
-              className={stepperStyle.button}
-            >
+            <Button disabled={activeStep === 0} onClick={handleBack} sx={{
+                backgroundColor: '#ff9f59',
+                width: '150px',
+                color: 'black',
+                "&:hover": {
+                  backgroundColor: '#82502c',
+                  color: 'aliceblue',
+                },
+              }}>
               Atras
             </Button>
             <Box sx={{ flex: "1 1 auto" }} />
             {activeStep === steps.length - 1 ? (
-              <Button
-                type="submit"
-                onClick={handleSubmit(onSubmit, onError)}
-                className={stepperStyle.button}
-              >
+              <Button type="submit" onClick={handleSubmit(onSubmit, onError)} sx={{
+                backgroundColor: '#ff9f59',
+                width: '150px',
+                color: 'black',
+                "&:hover": {
+                  backgroundColor: '#82502c',
+                  color: 'aliceblue',
+                },
+              }}>
                 Comprar
               </Button>
             ) : (
-              <Button
-                type="button"
-                onClick={handleNext}
-                className={stepperStyle.button}
-              >
+              <Button type="button" onClick={handleNext} sx={{
+                backgroundColor: '#ff9f59',
+                width: '150px',
+                color: 'black',
+                "&:hover": {
+                  backgroundColor: '#82502c',
+                  color: 'aliceblue',
+                },
+              }}>
                 Siguiente
               </Button>
             )}

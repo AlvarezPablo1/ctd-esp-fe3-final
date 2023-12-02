@@ -34,20 +34,26 @@ const Header: FC<Props> = ({variant}: Props) => {
     </Container>
 }
 
-
-const GeneralHeader: FC<Props> = ({variant}: Props) => {
-    return variant == 'general' ?
-        <AppBar sx={{
+const GeneralHeader: FC<Props> = ({ variant }: Props) => {
+    return variant == "general" ? (
+      <AppBar
+        position="static"
+        sx={{
+            position: 'static',
             background:"#000",
             boxShadow:"0px 5px 10px #ff9f59",
             zIndex:"999"
-            }} position="static">
-            <Header variant={variant}/>
-        </AppBar> : <Header variant={variant}/>
-        ;
-};
-GeneralHeader.defaultProps = {
-    variant: 'general'
-}
+        }}
+      >
+        <Header variant={variant} />
+      </AppBar>
+    ) : (
+      <Header variant={variant} />
+    );
+  };
+  GeneralHeader.defaultProps = {
+    variant: "general",
+  };
+  
+  export default GeneralHeader;
 
-export default GeneralHeader;

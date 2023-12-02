@@ -85,7 +85,15 @@ const confirmarCompra: React.FC<Comic> = ({id, title, thumbnail, price }) => {
         </Box>
       </Box>
       <Link href="/">
-        <Button className={confirmationStyle.button}>Volver al Inicio</Button>
+        <Button sx={{
+                backgroundColor: '#ff9f59',
+                width: '150px',
+                color: 'black',
+                "&:hover": {
+                  backgroundColor: '#82502c',
+                  color: 'aliceblue',
+                },
+              }}>Volver al Inicio</Button>
       </Link>
     </Container>
   );

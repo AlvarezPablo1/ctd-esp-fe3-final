@@ -7,12 +7,6 @@
   justify-content: space-around;
 }
 
-.title{
-  color: #ff9f59;
-  font-size: 30px;
-  text-transform: uppercase;
-}
-
 .productSumarry{
   height: 500px;
   align-items: center;
@@ -26,17 +20,6 @@
   align-items: center;
   justify-content: space-evenly;
   flex-direction:  row;
-}
-
-.btnBuy{
-  background-color: #ff9f59;
-  width: 150px;
-  color: black;
-}
-
-.btnBuy:hover{
-  background-color: #82502c;
-  color: aliceblue;
 }
 
 .character{
