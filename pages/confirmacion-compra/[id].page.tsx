@@ -54,8 +54,17 @@ const confirmarCompra: React.FC<Comic> = ({id, title, thumbnail, price }) => {
   // console.log(customerData);
   
   return (
-    <Container className={confirmationStyle.container}>
-      <Typography variant="caption" className={confirmationStyle.congratulationsMsj}>
+    <Container sx={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "space-between",
+    }}>
+      <Typography variant="caption" sx={{
+                          color: "#ff9f59",
+                          fontSize: "30px",
+                          textTransform: "uppercase",
+                        }}>
         Que disfrutes tu compra
       </Typography>
       <Box className={confirmationStyle.image}>

@@ -36,7 +36,11 @@ const CardDetail: React.FC<Comic> = ({id,title,description,thumbnail,characters,
   return (
     <Grid container spacing={{ xs: 6, sm: 1 }} className={CardDetailStyles.cardDetailContainer}>
       <Grid item xs={12}>
-        <Typography className={CardDetailStyles.title} variant="caption">
+        <Typography variant="caption" sx={{
+                          color: "#ff9f59",
+                          fontSize: "30px",
+                          textTransform: "uppercase",
+                        }}>
           {title}
         </Typography>
       </Grid>
@@ -101,11 +105,7 @@ const CardDetail: React.FC<Comic> = ({id,title,description,thumbnail,characters,
                   return (
                     <Grid item key={character.name} xs={6} sm={3}>
                       <Link href={`/personajes/${characterId}`}>
-                        <Typography sx={{
-                          color: "#ff9f59",
-                          fontSize: "30px",
-                          textTransform: "uppercase",
-                        }}>
+                        <Typography className={CardDetailStyles.character}>
                           {character.name}{" "}
                         </Typography>
                       </Link>

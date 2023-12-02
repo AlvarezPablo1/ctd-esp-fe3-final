@@ -32,8 +32,17 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
 const Checkout: React.FC<Comic> = ({ id, title, thumbnail, price }) => {
   return (
-    <Container className={checkoutStyle.container}>
-      <Typography variant="caption" className={checkoutStyle.title}>
+    <Container sx={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "space-between",
+    }}>
+      <Typography variant="caption" sx={{
+                          color: "#ff9f59",
+                          fontSize: "30px",
+                          textTransform: "uppercase",
+                        }}>
         {title}
       </Typography>
       <Box className={checkoutStyle.form}>
