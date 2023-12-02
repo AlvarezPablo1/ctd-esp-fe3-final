@@ -64,6 +64,7 @@ const confirmarCompra: React.FC<Comic> = ({id, title, thumbnail, price }) => {
                           color: "#ff9f59",
                           fontSize: "30px",
                           textTransform: "uppercase",
+                          height: "50vh"
                         }}>
         Que disfrutes tu compra
       </Typography>

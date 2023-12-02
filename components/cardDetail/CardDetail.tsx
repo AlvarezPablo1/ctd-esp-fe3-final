@@ -34,7 +34,7 @@ interface Image {
 const CardDetail: React.FC<Comic> = ({id,title,description,thumbnail,characters,price,oldPrice,stock }) => {
 
   return (
-    <Grid container spacing={{ xs: 6, sm: 1 }} className={CardDetailStyles.cardDetailContainer}>
+    <Grid container spacing={{ xs: 6, sm: 1 }} className={CardDetailStyles.cardDetailContainer} sx={{  textAlign: "center"}}>
       <Grid item xs={12}>
         <Typography variant="caption" sx={{
                           color: "#ff9f59",
@@ -44,7 +44,7 @@ const CardDetail: React.FC<Comic> = ({id,title,description,thumbnail,characters,
           {title}
         </Typography>
       </Grid>
-      <Grid item xs={12} sm={4} className={CardDetailStyles.image}>
+      <Grid item xs={12} sm={4} className={CardDetailStyles.image} >
         <Image src={thumbnail.path + ".jpg"} alt={title} height={500} width={350} />
       </Grid>
       <Grid item container xs={12} sm={7} className={CardDetailStyles.productSumarry}>
