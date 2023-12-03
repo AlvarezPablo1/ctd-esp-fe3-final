@@ -33,7 +33,16 @@ const schema = yup.object().shape({
   nameTarjet: yup
     .string()
     .required("El nombre como aparece en la tarjeta es requerido"),
-  numTarjet: yup.number().required("El número de tarjeta es requerido"),
+    numTarjet: yup.number().required("El número de tarjeta es requerido").test(
+      'len',
+      'El número de tarjeta debe tener exactamente 16 dígitos',
+      (val): boolean => {
+        if (val) {
+          return val.toString().length === 16;
+        }
+        return false;
+      }
+    ),
   exp: yup.string().required("El Exp MM/YY es requerido"),
   cvv: yup.number().required("El CVV es requerido"),
 });
@@ -493,10 +502,6 @@ const StepperComp: React.FC<id> = ({id}) => {
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
   };
 
   return (
