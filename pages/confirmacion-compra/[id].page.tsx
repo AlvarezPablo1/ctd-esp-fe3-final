@@ -1,3 +1,5 @@
+'use client'
+
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { GetServerSideProps } from "next";
@@ -50,7 +52,7 @@ interface Data {
 const confirmarCompra: React.FC<Comic> = ({id, title, thumbnail, price }) => {
 
   const [storage, setStorage] = useState<Data>();
-  
+
   useEffect(() => {
     const storedData = localStorage.getItem("formattedFormData");
 
