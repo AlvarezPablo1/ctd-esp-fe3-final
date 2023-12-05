@@ -11,17 +11,7 @@ import Button from '@mui/material/Button';
 import confirmationStyle from './confirmation.module.css'
 import { useEffect, useState } from "react";
 
-interface Comic {
-  id: number;
-  title: string;
-  thumbnail: Image;
-  price: number;
-}
 
-interface Image {
-  path: string;
-  extension: string;
-}
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const idPage = query.id;
@@ -34,24 +24,34 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   };
 };
 
-interface Data {
-  customer: {
-      name: string;
-      lastname: string;
-      email: string;
-      address: {
-        addressHome: string;
-        addressDept: string | null;
-        city: string;
-        state: string;
-        zipCode: number;
-      },
-    },
+interface Comic {
+  id: number;
+  title: string;
+  thumbnail: Image;
+  price: number;
 }
 
-const confirmarCompra: React.FC<Comic> = ({id, title, thumbnail, price }) => {
+interface Image {
+  path: string;
+  extension: string;
+}
+interface Data {
+  customer: {
+    name: string;
+    lastname: string;
+    email: string;
+    address: {
+      addressHome: string;
+      addressDept: string | null;
+      city: string;
+      state: string;
+      zipCode: number;
+    };
+  };
+}
 
-  const [storage, setStorage] = useState<Data>();
+const ConfirmarCompra: React.FC<Comic> = ({ id, title, thumbnail, price }) => {
+  const [storage, setStorage] = useState<Data | undefined>();
 
   useEffect(() => {
     const storedData = localStorage.getItem("formattedFormData");
@@ -59,7 +59,7 @@ const confirmarCompra: React.FC<Comic> = ({id, title, thumbnail, price }) => {
     if (storedData) {
       const formData = JSON.parse(storedData);
       console.log("Datos recuperados:", formData);
-      setStorage(formData)
+      setStorage(formData);
     }
   }, []);
   
@@ -127,5 +127,4 @@ const confirmarCompra: React.FC<Comic> = ({id, title, thumbnail, price }) => {
 };
 
 
-
-export default confirmarCompra;
+export default ConfirmarCompra;
