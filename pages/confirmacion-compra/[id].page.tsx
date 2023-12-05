@@ -1,5 +1,3 @@
-'use client'
-
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { GetServerSideProps } from "next";
@@ -22,12 +20,6 @@ interface Image {
   path: string;
   extension: string;
 }
-
-// interface CustomerData {
-//   name: string;
-//   lastname: string;
-//   email: string;
-// }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const idPage = query.id;
@@ -58,15 +50,14 @@ interface Data {
 const confirmarCompra: React.FC<Comic> = ({id, title, thumbnail, price }) => {
 
   const [storage, setStorage] = useState<Data>();
+  
   useEffect(() => {
-    // Acceder al localStorage aquí
     const storedData = localStorage.getItem("formattedFormData");
 
     if (storedData) {
       const formData = JSON.parse(storedData);
       console.log("Datos recuperados:", formData);
       setStorage(formData)
-      // Puedes hacer más cosas con formData aquí
     }
   }, []);
   
