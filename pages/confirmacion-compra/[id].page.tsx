@@ -40,18 +40,35 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   };
 };
 
+interface Data {
+  customer: {
+      name: string;
+      lastname: string;
+      email: string;
+      address: {
+        addressHome: string;
+        addressDept: string | null;
+        city: string;
+        state: string;
+        zipCode: number;
+      },
+    },
+}
+
 const confirmarCompra: React.FC<Comic> = ({id, title, thumbnail, price }) => {
 
-  // const [customerData, setCustomerData] = useState<CustomerData | null>(null);
+  const [storage, setStorage] = useState<Data>();
+  useEffect(() => {
+    // Acceder al localStorage aquí
+    const storedData = localStorage.getItem("formattedFormData");
 
-  // useEffect(() => {
-  //   const storedCustomerData = localStorage.getItem("customer");
-  //   if (storedCustomerData) {
-  //     setCustomerData(JSON.parse(storedCustomerData));
-  //   }
-  // }, []);
-
-  // console.log(customerData);
+    if (storedData) {
+      const formData = JSON.parse(storedData);
+      console.log("Datos recuperados:", formData);
+      setStorage(formData)
+      // Puedes hacer más cosas con formData aquí
+    }
+  }, []);
   
   return (
     <Container sx={{
@@ -80,17 +97,22 @@ const confirmarCompra: React.FC<Comic> = ({id, title, thumbnail, price }) => {
         <Box className={confirmationStyle.info}>
           <Typography sx={{ color: "#ff9f59" }}>Datos personales</Typography>
           <Box>
-            <Typography sx={{ color: "aliceblue" }}>nombre de prueba</Typography>
-            <Typography sx={{ color: "aliceblue" }}>user@test.com</Typography>
+            <Typography sx={{ color: "aliceblue" }}>{storage?.customer.name} {storage?.customer.lastname}</Typography>
+            <Typography sx={{ color: "aliceblue" }}>{storage?.customer.email}</Typography>
           </Box>
           <Box sx={{backgroundColor: "#ff9f59",height: "1px", width: "100%"}}/>
         </Box>
         <Box className={confirmationStyle.info}>
           <Typography sx={{ color: "#ff9f59" }}>Dirección de entrega</Typography>
           <Box>
-            <Typography sx={{ color: "aliceblue" }}>calle 231</Typography>
+            {
+              storage?.customer.address.addressDept ? (
+                <Typography sx={{ color: "aliceblue" }}>{storage?.customer.address.addressDept}</Typography>
+              ):
+              <Typography sx={{ color: "aliceblue" }}>{storage?.customer.address.addressHome}</Typography>
+            }
             <Typography sx={{ color: "aliceblue" }}>
-              Buenos Aires, BA (1417)
+            {storage?.customer.address.city}, {storage?.customer.address.state} ({storage?.customer.address.zipCode})
             </Typography>
           </Box>
           <Box sx={{backgroundColor: "#ff9f59",height: "1px", width: "100%"}}/>

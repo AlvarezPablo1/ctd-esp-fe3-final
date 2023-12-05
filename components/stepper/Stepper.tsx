@@ -418,7 +418,7 @@ type FormValues = {
   surname: string;
   email: string;
   direccionNumero: string;
-  derp?: string;
+  dept?: string;
   city: string;
   state: string;
   codPostal: number;
@@ -473,8 +473,8 @@ const StepperComp: React.FC<Comic> = ({ id, title, thumbnail, price }) => {
         lastname: watch().surname,
         email: watch().email,
         address: {
-          address1: watch().direccionNumero,
-          address2: watch().derp,
+          addressHome: watch().direccionNumero,
+          addressDept: watch().dept,
           city: watch().city,
           state: watch().state,
           zipCode: watch().codPostal,
@@ -518,8 +518,8 @@ const StepperComp: React.FC<Comic> = ({ id, title, thumbnail, price }) => {
             lastname: watch().surname,
             email: watch().email,
             address: {
-              address1: watch().direccionNumero,
-              address2: watch().derp,
+              addressHome: watch().direccionNumero,
+              addressDept: watch().dept,
               city: watch().city,
               state: watch().state,
               zipCode: watch().codPostal,
@@ -570,7 +570,7 @@ const StepperComp: React.FC<Comic> = ({ id, title, thumbnail, price }) => {
         isValid = await trigger([
           "direccionNumero",
           "city",
-          "derp",
+          "dept",
           "state",
           "codPostal",
         ]);
