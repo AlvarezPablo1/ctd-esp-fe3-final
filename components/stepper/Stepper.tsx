@@ -488,7 +488,7 @@ const StepperComp: React.FC<Comic> = ({ id, title, thumbnail, price }) => {
       },
       order: {
         name: title,
-        image: thumbnail?.path + ".jpg",
+        image: thumbnail.path + ".jpg",
         price: price,
       },
     };

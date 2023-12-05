@@ -48,7 +48,7 @@ const Checkout: React.FC<Comic> = ({ id, title, thumbnail, price }) => {
         {title}
       </Typography>
       <Box className={checkoutStyle.form}>
-        <StepperComp id={id}/>
+        <StepperComp id={id} title={title} thumbnail={thumbnail} price={price}/>
         <CardCheckout id={id} title={title} thumbnail={thumbnail} price={price}/>
       </Box>
     </Container>
