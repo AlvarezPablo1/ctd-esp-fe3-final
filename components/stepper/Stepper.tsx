@@ -14,7 +14,15 @@ import {
 import { TextField } from "@mui/material";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import stepperStyle from './stepper.module.css'
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const steps = ["Datos personales", "Dirección de entrega", "Datos del pago"];
 
@@ -33,16 +41,7 @@ const schema = yup.object().shape({
   nameTarjet: yup
     .string()
     .required("El nombre como aparece en la tarjeta es requerido"),
-    numTarjet: yup.number().required("El número de tarjeta es requerido").test(
-      'len',
-      'El número de tarjeta debe tener exactamente 16 dígitos',
-      (val): boolean => {
-        if (val) {
-          return val.toString().length === 16;
-        }
-        return false;
-      }
-    ),
+  numTarjet: yup.string().required("El número de tarjeta es requerido"),
   exp: yup.string().required("El Exp MM/YY es requerido"),
   cvv: yup.number().required("El CVV es requerido"),
 });
@@ -424,21 +423,42 @@ type FormValues = {
   state: string;
   codPostal: number;
   nameTarjet: string;
-  numTarjet: number;
+  numTarjet: string;
   exp: string;
   cvv: number;
 };
 
-interface id {
+interface Comic {
   id: number;
+  title: string;
+  thumbnail: Image;
+  price: number;
 }
 
-const StepperComp: React.FC<id> = ({id}) => {
+interface Image {
+  path: string;
+  extension: string;
+}
+
+const StepperComp: React.FC<Comic> = ({ id, title, thumbnail, price }) => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
-  const { handleSubmit, control, trigger } = useForm<FormValues>({
+  const [open, setOpen] = React.useState(false);
+  const [alertMessage, setAlertMessage] = React.useState("");
+  const { handleSubmit, control, trigger, watch } = useForm<FormValues>({
     resolver: yupResolver(schema),
   });
+
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const isStepSkipped = (step: number) => {
     return skipped.has(step);
@@ -446,30 +466,100 @@ const StepperComp: React.FC<id> = ({id}) => {
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     console.log("Form data:", data);
-    const formattedData = {
+
+    const formattedData1 = {
       customer: {
-        name: data.name,
-        lastname: data.surname,
-        email: data.email,
+        name: watch().name,
+        lastname: watch().surname,
+        email: watch().email,
         address: {
-          address1: data.direccionNumero,
-          address2: data.derp || "",
-          city: data.city,
-          state: data.state,
-          zipCode: data.codPostal.toString(),
+          address1: watch().direccionNumero,
+          address2: watch().derp,
+          city: watch().city,
+          state: watch().state,
+          zipCode: watch().codPostal,
         },
       },
+      card: {
+        number: watch().numTarjet.replace(" ", ""),
+        cvc: watch().cvv,
+        expDate: watch().exp,
+        nameOnCard: watch().nameTarjet,
+      },
+      order: {
+        name: title,
+        image: thumbnail?.path + ".jpg",
+        price: price,
+      },
     };
-  
-    localStorage.setItem('formattedFormData', JSON.stringify(formattedData));
-    window.location.href = `/confirmacion-compra/${id}`;
+
+    const isValid = await trigger();
+
+    if (isValid) {
+      try {
+        const response = await fetch("/api/checkout", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formattedData1),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error("Error al procesar la solicitud:", errorData);
+          setAlertMessage(errorData.message);
+          setOpen(true);
+          return;
+        }
+        const formattedData = {
+          customer: {
+            name: watch().name,
+            lastname: watch().surname,
+            email: watch().email,
+            address: {
+              address1: watch().direccionNumero,
+              address2: watch().derp,
+              city: watch().city,
+              state: watch().state,
+              zipCode: watch().codPostal,
+            },
+          },
+          card: {
+            number: watch().numTarjet.replace(" ", ""),
+            cvc: watch().cvv,
+            expDate: watch().exp,
+            nameOnCard: watch().nameTarjet,
+          },
+          order: {
+            name: title,
+            image: thumbnail.path + ".jpg",
+            price: price,
+          },
+        };
+
+        localStorage.setItem(
+          "formattedFormData",
+          JSON.stringify(formattedData)
+        );
+        window.location.href = `/confirmacion-compra/${id}`;
+      } catch (error) {
+        console.error("Error al procesar la solicitud:", error);
+      }
+    } else {
+      console.error(
+        "Hay errores en el formulario. No se realizará la redirección."
+      );
+    }
   };
 
   const onError: SubmitErrorHandler<FormValues> = (errors) => {
     console.error("Errores de validación:", errors);
   };
 
-  const handleNext = async () => {
+  const handleNext = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
     let isValid = false;
 
     switch (activeStep) {
@@ -493,7 +583,6 @@ const StepperComp: React.FC<id> = ({id}) => {
     if (isValid) {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
 
-      // Solo realiza el envío del formulario en el último paso
       if (activeStep === steps.length - 1) {
         handleSubmit(onSubmit, onError)();
       }
@@ -507,10 +596,11 @@ const StepperComp: React.FC<id> = ({id}) => {
   return (
     <Box
       sx={{
-        width: "70%",
+        width: {xs: "100%", sm: "70%"},
         height: "600px",
         display: "flex",
         flexDirection: "column",
+        marginBottom: {xs: "70px", sm: "0px"}
       }}
     >
       <Stepper activeStep={activeStep}>
