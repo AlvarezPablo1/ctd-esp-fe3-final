@@ -665,6 +665,7 @@ const StepperComp: React.FC<Comic> = ({ id, title, thumbnail, price }) => {
             </Button>
             <Box sx={{ flex: "1 1 auto" }} />
             {activeStep === steps.length - 1 ? (
+              <>
               <Button type="submit" onClick={handleSubmit(onSubmit, onError)} sx={{
                 backgroundColor: '#ff9f59',
                 width: '150px',
@@ -676,6 +677,20 @@ const StepperComp: React.FC<Comic> = ({ id, title, thumbnail, price }) => {
               }}>
                 Comprar
               </Button>
+                <Snackbar
+                  open={open}
+                  autoHideDuration={6000}
+                  onClose={handleClose}
+                >
+                  <Alert
+                    onClose={handleClose}
+                    severity="error"
+                    sx={{ width: "100%" }}
+                  >
+                    {alertMessage}
+                  </Alert>
+                </Snackbar>
+              </>
             ) : (
               <Button type="button" onClick={handleNext} sx={{
                 backgroundColor: '#ff9f59',
