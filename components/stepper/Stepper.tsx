@@ -80,6 +80,7 @@ const StepContent1: React.FC<any> = ({ control }) => (
               }
             },
           }}
+
         />
       )}
     />
@@ -107,6 +108,7 @@ const StepContent1: React.FC<any> = ({ control }) => (
               }
             },
           }}
+
         />
       )}
     />
@@ -134,6 +136,7 @@ const StepContent1: React.FC<any> = ({ control }) => (
               }
             },
           }}
+
         />
       )}
     />
@@ -173,6 +176,7 @@ const StepContent2: React.FC<any> = ({ control }) => (
               }
             },
           }}
+
         />
       )}
     />
@@ -199,6 +203,7 @@ const StepContent2: React.FC<any> = ({ control }) => (
               }
             },
           }}
+
         />
       )}
     />
@@ -225,6 +230,7 @@ const StepContent2: React.FC<any> = ({ control }) => (
               }
             },
           }}
+
         />
       )}
     />
@@ -254,6 +260,7 @@ const StepContent2: React.FC<any> = ({ control }) => (
                 }
               },
             }}
+  
           />
         )}
       />
@@ -280,6 +287,7 @@ const StepContent2: React.FC<any> = ({ control }) => (
                 }
               },
             }}
+  
           />
         )}
       />
@@ -321,6 +329,7 @@ const StepContent3: React.FC<any> = ({ control }) => (
               }
             },
           }}
+
         />
       )}
     />
@@ -348,6 +357,7 @@ const StepContent3: React.FC<any> = ({ control }) => (
               }
             },
           }}
+
         />
       )}
     />
@@ -378,6 +388,7 @@ const StepContent3: React.FC<any> = ({ control }) => (
                 }
               },
             }}
+  
           />
         )}
       />
@@ -406,6 +417,7 @@ const StepContent3: React.FC<any> = ({ control }) => (
                 }
               },
             }}
+  
           />
         )}
       />
@@ -418,7 +430,7 @@ type FormValues = {
   surname: string;
   email: string;
   direccionNumero: string;
-  dept?: string;
+  derp?: string;
   city: string;
   state: string;
   codPostal: number;
@@ -473,8 +485,8 @@ const StepperComp: React.FC<Comic> = ({ id, title, thumbnail, price }) => {
         lastname: watch().surname,
         email: watch().email,
         address: {
-          addressHome: watch().direccionNumero,
-          addressDept: watch().dept,
+          address1: watch().direccionNumero,
+          address2: watch().derp,
           city: watch().city,
           state: watch().state,
           zipCode: watch().codPostal,
@@ -518,8 +530,8 @@ const StepperComp: React.FC<Comic> = ({ id, title, thumbnail, price }) => {
             lastname: watch().surname,
             email: watch().email,
             address: {
-              addressHome: watch().direccionNumero,
-              addressDept: watch().dept,
+              address1: watch().direccionNumero,
+              address2: watch().derp,
               city: watch().city,
               state: watch().state,
               zipCode: watch().codPostal,
@@ -570,7 +582,7 @@ const StepperComp: React.FC<Comic> = ({ id, title, thumbnail, price }) => {
         isValid = await trigger([
           "direccionNumero",
           "city",
-          "dept",
+          "derp",
           "state",
           "codPostal",
         ]);
